@@ -1,8 +1,9 @@
-FROM alpine:3.14
+FROM debian:buster
 
-RUN apk update
+RUN apt-get update \
+    && apt-get install nginx -yq \
+    && apt-get install openssl -yq
 
-COPY conf/nginx.conf /etc/nginx/
-COPY conf/default /etc/nginx/conf.d/
+COPY ./conf/server-conf /etc/nginx/sites-available/default
 
-CMD [ "nginx", "-g", "'daemon off;'" ]
+CMD [ "nginx", "-g", "daemon off;" ]
