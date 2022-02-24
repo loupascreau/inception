@@ -16,3 +16,16 @@ The objective is to make us discover the system administration using **Docker** 
 
 * Remove one or more containers : </br>
 `sudo docker rm <ID_container>` </br>
+
+* Remove one or more images : </br>
+`sudo docker rmi <ID_container>` </br>
+
+<h2>Docker-compose commands</h2>
+
+The following command has to be run from the root directory where the `docker-compose.yml` file is present.  
+  
+* Run a Docker-compose : </br>
+`sudo docker-compose up` </br>
+
+* See docker-compose with ENV resolution :  
+`sudo docker-compose config`  
