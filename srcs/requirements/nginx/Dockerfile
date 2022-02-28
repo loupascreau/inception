@@ -17,6 +17,6 @@ RUN     ln -s /etc/nginx/sites-available/my_domain /etc/nginx/sites-enabled/my_d
 RUN     chown -R www-data /var/www/*
 RUN     chmod -R 755 /var/www/*
 
-COPY    ./conf/my_domain /var/www/my_domain/
+# COPY    ./conf/my_domain /var/www/my_domain/
 
 CMD     ["nginx", "-g", "daemon off;"]
