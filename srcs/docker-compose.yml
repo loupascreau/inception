@@ -1,6 +1,9 @@
 services:
   nginx:
+    container_name: container_nginx
+    restart: on-failure
     build: ./requirements/nginx
     ports:
-      - "8000:443"
+      - 8080:80
+      - 443:443
     
