@@ -22,7 +22,7 @@ server {
 	ssl					on;
 	ssl_certificate		/etc/nginx/ssl/my_domain.crt;
     ssl_certificate_key	/etc/nginx/ssl/my_domain.key;
-	ssl_dhparam			/etc/nginx/ssl/dhparam.pem;
+#	ssl_dhparam			/etc/nginx/ssl/dhparam.pem;
 
 	ssl_protocols		TLSv1.2 TLSv1.3;
 	ssl_prefer_server_ciphers   on;
