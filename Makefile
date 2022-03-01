@@ -13,7 +13,7 @@
 DOCKER := docker
 DOCKER_COMPOSE := docker-compose
 DOCKER_COMPOSE_FILE := ./srcs/docker-compose.yml
-CONTAINER_NAME := $(shell cat ./srcs/.env | grep CONTAINER_NAME | sed 's/CONTAINER_NAME//g' | sed 's/=//g' | sed 's/\"//g')
+CONTAINER_NAME_NGINX := $(shell cat ./srcs/.env | grep CONTAINER_NAME_NGINX | sed 's/CONTAINER_NAME_NGINX//g' | sed 's/=//g' | sed 's/\"//g')
 IP_ADDRESS := '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'
 
 build:
@@ -24,9 +24,6 @@ up:
 
 start:
 		@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) start $(c)
-
-exec:
-		@$(DOCKER) exec -it $(CONTAINER_NAME) bash
 
 down:
 		@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down $(c)
@@ -41,17 +38,20 @@ restart:
 		@make -s stop
 		@make -s up
 
-logs:
-		@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) logs --tail=100 -f $(c)
-
 ps:
 		@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) ps
 
-inspect:
-		@$(DOCKER) inspect -f $(IP_ADDRESS) $(CONTAINER_NAME)
+network_ls:
+		@$(DOCKER) network ls
+
+inspect_nginx:
+		@$(DOCKER) inspect -f $(IP_ADDRESS) $(CONTAINER_NAME_NGINX)
+
+exec_nginx:
+		@$(DOCKER) exec -it $(CONTAINER_NAME_NGINX) bash
 
 clean:
 		@make -s destroy
 		@$(DOCKER) system prune -a --force
 
-.PHONY: build up start exec down destroy stop restart logs ps inspect clean
+.PHONY: build up start down destroy stop restart ps network_ls inspect_nginx exec_nginx clean

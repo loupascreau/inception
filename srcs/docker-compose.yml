@@ -1,6 +1,6 @@
 services:
   nginx:
-    container_name: ${CONTAINER_NAME}
+    container_name: ${CONTAINER_NAME_NGINX}
     restart: on-failure
     build: ./requirements/nginx
     networks:
