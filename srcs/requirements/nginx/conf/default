@@ -35,4 +35,11 @@ server {
 
 		try_files $uri /index.html;
 	}
+
+	location ~ \.php$ {
+
+		fastcgi_pass 127.0.0.1:9000;
+		fastcgi_index index.php;
+    	include fastcgi_params;
+	}
 }
