@@ -1,4 +1,22 @@
 services:
+  mysql:
+    container_name: ${CONTAINER_NAME_MARIADB}
+    restart: on-failure
+    build: ./requirements/mariadb
+    networks:
+      - inception
+    
+  wordpress:
+    container_name: ${CONTAINER_NAME_WORDPRESS}
+    restart: on-failure
+    build: ./requirements/wordpress
+    volumes:
+      - /home/${USER}/data/wordpress/:/var/www/my_domain/
+    depends_on:
+      - mysql
+    networks:
+      - inception
+
   nginx:
     container_name: ${CONTAINER_NAME_NGINX}
     restart: on-failure
@@ -8,7 +26,7 @@ services:
     ports:
       - 443:443
     volumes:
-      - ../../../../data/my_domain/:/var/www/my_domain/
+      - /home/${USER}/data/my_domain/:/var/www/my_domain/
 
 networks:
   inception:
