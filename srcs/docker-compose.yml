@@ -1,5 +1,5 @@
 services:
-  mysql:
+  db:
     container_name: ${CONTAINER_NAME_MARIADB}
     restart: on-failure
     build: ./requirements/mariadb
@@ -11,9 +11,9 @@ services:
     restart: on-failure
     build: ./requirements/wordpress
     volumes:
-      - /home/${USER}/data/wordpress/:/var/www/my_domain/
+      - /home/${USER}/data/wordpress/:/var/www/my_domain/wordpress/
     depends_on:
-      - mysql
+      - db
     networks:
       - inception
 
