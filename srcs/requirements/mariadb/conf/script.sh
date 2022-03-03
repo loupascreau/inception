@@ -9,3 +9,5 @@ echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'rootpassword';" | mysql -u ro
 echo "CREATE USER 'lpascrea'@'localhost' IDENTIFIED BY 'lpascreapassword';" | mysql -u root --skip-password
 echo "GRANT ALL PRIVILEGES ON * . * TO 'lpascrea'@'localhost';" | mysql -u root --skip-password
 echo "FLUSH PRIVILEGES;" | mysql -u root --skip-password
+
+mysqld
