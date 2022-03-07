@@ -1,32 +1,38 @@
 services:
-  db:
-    container_name: ${CONTAINER_NAME_MARIADB}
-    restart: on-failure
-    build: ./requirements/mariadb
-    networks:
-      - inception
-    
-  wordpress:
-    container_name: ${CONTAINER_NAME_WORDPRESS}
-    restart: on-failure
-    build: ./requirements/wordpress
-    volumes:
-      - /home/${USER}/data/wordpress/:/var/www/my_domain/wordpress/
-    depends_on:
-      - db
-    networks:
-      - inception
-
   nginx:
     container_name: ${CONTAINER_NAME_NGINX}
     restart: on-failure
     build: ./requirements/nginx
     networks:
       - inception
+    depends_on:
+      - wordpress
     ports:
       - 443:443
     volumes:
-      - /home/${USER}/data/my_domain/:/var/www/my_domain/
+       - /home/${USER}/data/wordpress:/var/www
+    
+  wordpress:
+    container_name: ${CONTAINER_NAME_WORDPRESS}
+    restart: on-failure
+    build: ./requirements/wordpress
+    volumes:
+      - /home/${USER}/data/wordpress/:/var/www/
+    depends_on:
+      - db
+    networks:
+      - inception
+    env_file:
+      - .env
+  
+  db:
+    container_name: ${CONTAINER_NAME_MARIADB}
+    restart: on-failure
+    build: ./requirements/mariadb
+    networks:
+      - inception
+    env_file:
+      - .env
 
 networks:
   inception:
