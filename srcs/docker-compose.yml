@@ -10,21 +10,21 @@ services:
     ports:
       - 443:443
     volumes:
-       - /home/${USER}/data/wordpress:/var/www
-    
+       - /home/${USER}/data/wordpress/:/var/www/wordpress
+
   wordpress:
     container_name: ${CONTAINER_NAME_WORDPRESS}
     restart: on-failure
     build: ./requirements/wordpress
     volumes:
-      - /home/${USER}/data/wordpress/:/var/www/
+      - /home/${USER}/data/wordpress/:/var/www/wordpress
     depends_on:
       - db
     networks:
       - inception
     env_file:
       - .env
-  
+
   db:
     container_name: ${CONTAINER_NAME_MARIADB}
     restart: on-failure
