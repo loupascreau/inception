@@ -10,7 +10,7 @@ services:
     ports:
       - 443:443
     volumes:
-       - /home/${USER}/data/wordpress/:/var/www/wordpress
+      - /home/${USER}/data/wordpress/:/var/www/wordpress
 
   wordpress:
     container_name: ${CONTAINER_NAME_WORDPRESS}
@@ -29,6 +29,8 @@ services:
     container_name: ${CONTAINER_NAME_MARIADB}
     restart: on-failure
     build: ./requirements/mariadb
+    volumes:
+      - /home/${USER}/data/mariadb/:/var/lib/mysql
     networks:
       - inception
     env_file:
