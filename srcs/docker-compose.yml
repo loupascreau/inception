@@ -12,6 +12,17 @@ services:
     volumes:
       - /home/${USER}/data/wordpress/:/var/www/wordpress
 
+  db:
+    container_name: ${CONTAINER_NAME_MARIADB}
+    restart: on-failure
+    build: ./requirements/mariadb
+    volumes:
+      - /home/${USER}/data/mariadb/:/var/lib/mysql
+    networks:
+      - inception
+    env_file:
+      - .env
+
   wordpress:
     container_name: ${CONTAINER_NAME_WORDPRESS}
     restart: on-failure
@@ -20,17 +31,6 @@ services:
       - /home/${USER}/data/wordpress/:/var/www/wordpress
     depends_on:
       - db
-    networks:
-      - inception
-    env_file:
-      - .env
-
-  db:
-    container_name: ${CONTAINER_NAME_MARIADB}
-    restart: on-failure
-    build: ./requirements/mariadb
-    volumes:
-      - /home/${USER}/data/mariadb/:/var/lib/mysql
     networks:
       - inception
     env_file:
