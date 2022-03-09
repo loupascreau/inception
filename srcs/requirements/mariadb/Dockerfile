@@ -10,7 +10,9 @@ RUN		apt-get -y update \
 COPY	./conf/my.cnf /etc/mysql/my.cnf
 COPY	./tools/script.sh ./
 
-RUN		chmod 755 /etc/mysql/my.cnf
+RUN		chmod 755 /etc/mysql/my.cnf \
+		&& chown -R mysql:mysql /var/lib/mysql \
+		&& chmod -R 755 /var/lib/mysql
 
 EXPOSE	3306
 

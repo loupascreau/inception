@@ -6,7 +6,7 @@
 #    By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 13:58:09 by lpascrea          #+#    #+#              #
-#    Updated: 2022/03/02 09:00:09 by lpascrea         ###   ########.fr        #
+#    Updated: 2022/03/09 07:43:30 by lpascrea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ exec_mariadb:
 
 clean:
 		@make -s destroy
+		@sudo rm -rf /home/${USER}/data/mariadb/*
 		@$(DOCKER) system prune -a --force
 
 .PHONY: build up start down destroy stop restart ps network_ls inspect_nginx exec_nginx \
