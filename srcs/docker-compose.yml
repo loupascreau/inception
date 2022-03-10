@@ -24,7 +24,7 @@ services:
       - inception
     env_file:
       - .env
-  
+
   db:
     container_name: ${CONTAINER_NAME_MARIADB}
     restart: always
