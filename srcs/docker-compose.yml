@@ -1,7 +1,7 @@
 services:
   nginx:
     container_name: ${CONTAINER_NAME_NGINX}
-    restart: on-failure
+    restart: always
     build: ./requirements/nginx
     networks:
       - inception
@@ -12,27 +12,31 @@ services:
     volumes:
       - wordpress_data:/var/www/wordpress
 
-  db:
-    container_name: ${CONTAINER_NAME_MARIADB}
-    restart: on-failure
-    build: ./requirements/mariadb
-    ports:
-      - 3307:3306
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - inception
-    env_file:
-      - .env
-
   wordpress:
     container_name: ${CONTAINER_NAME_WORDPRESS}
-    restart: on-failure
+    restart: always
     build: ./requirements/wordpress
     volumes:
       - wordpress_data:/var/www/wordpress
     depends_on:
       - db
+    networks:
+      - inception
+    env_file:
+      - .env
+  
+  db:
+    container_name: ${CONTAINER_NAME_MARIADB}
+    restart: always
+    build:
+      context: ./requirements/mariadb
+      args:
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
     networks:
       - inception
     env_file:
