@@ -44,11 +44,13 @@ services:
 
 volumes:
   wordpress_data:
+    driver: local
     driver_opts:
       type: none
       device: /home/${USER}/data/wordpress/
       o: bind
   db_data:
+    driver: local
     driver_opts:
       type: none
       device: /home/${USER}/data/mariadb/
