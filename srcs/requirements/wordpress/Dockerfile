@@ -12,15 +12,9 @@ RUN     apt-get -y update \
         && mkdir -p /var/www/wordpress \
         && chown -R www-data:www-data /var/www/wordpress \
         && chmod -R 755 /var/www/wordpress
-        # && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-
-
+        
 COPY    ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 EXPOSE  9000
-
-# RUN     mkdir -p /var/www/wordpress \
-#         && chown -R www-data:www-data /var/www/wordpress \
-#         && chmod -R 755 /var/www/wordpress
 
 CMD     php-fpm7.3 -F
