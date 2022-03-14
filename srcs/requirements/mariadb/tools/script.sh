@@ -1,15 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 service mysql start
-
-echo "CREATE DATABASE wordpress;" | mysql #-u root --skip-password
-echo "GRANT ALL ON wordpress.* TO 'wp'@'localhost' IDENTIFIED BY 'wppassword' WITH GRANT OPTION;" | mysql #-u root --skip-password
-# echo "GRANT ALL PRIVILEGES ON * . * TO 'wp'@'localhost';" | mysql #-u root --skip-password
-# echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost' WITH GRANT OPTION;" | mysql #-u root --skip-password
-# echo "UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE User = 'root';" | mysql #-u root --skip-password
-# echo "UPDATE mysql.user SET Password = PASSWORD('rootpassword') WHERE User = 'root';" | mysql #-u root --skip-password
-echo "FLUSH PRIVILEGES;" | mysql #-u root --skip-password
-
+echo "CREATE DATABASE $MYSQL_DATABASE;" | mysql
+echo "GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD' WITH GRANT OPTION;" | mysql
+echo "FLUSH PRIVILEGES;" | mysql
+echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');" | mysql
 service mysql stop
 
-exec /usr/sbin/mysqld -u root
+mysqld -u mysql

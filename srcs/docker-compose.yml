@@ -22,11 +22,8 @@ services:
       - db
     networks:
       - inception
-    environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    env_file:
+      - .env
 
   db:
     container_name: ${CONTAINER_NAME_MARIADB}
