@@ -7,4 +7,4 @@ echo "FLUSH PRIVILEGES;" | mysql
 echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');" | mysql
 service mysql stop
 
-mysqld -u mysql
+exec mysqld -u mysql

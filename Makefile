@@ -66,7 +66,7 @@ exec_mariadb:
 
 clean:
 		@make -s destroy
-		@sudo rm -rf /home/${USER}/data/mariadb/*
+		@sudo rm -rf /home/${USER}/data/mariadb/* /home/${USER}/data/wordpress/*
 		@$(DOCKER) system prune -a --force
 
 .PHONY: build up start down destroy stop restart ps network_ls inspect_nginx exec_nginx \
