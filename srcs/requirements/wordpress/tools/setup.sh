@@ -1,16 +1,13 @@
 #!/bin/sh
 
-# wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O /usr/local/bin/wp
-# chmod +x /usr/local/bin/wp
+rm -rf /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
 
-# wp cli update --yes
+wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=$DB_HOST --path="/var/www/wordpress" --allow-root --skip-check
 
-# wp core download --locale=fr_FR --path=/var/www/wordpress
+# wp core install --url=$DOMAIN_NAME --title=$TITLE --admin_user=$ADMIN_USER --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_USER@test.fr --path="/var/www/wordpress" --allow-root
 
-wp config create --dbname=wordpress --dbuser=wp --dbpass=wppassword --dbhost=db:3306 --path="/var/www/wordpress" --allow-root
+wp user create $USER $USER@student.42.fr --role='author'
 
-wp core install --url=lpascrea.42.fr --title=Inception --admin_user=master --admin_password=masterpassword --admin_email=master@test.fr --path="/var/www/wordpress" --allow-root
+# exec "$@"
 
-# wp rewrite flush
-
-exec "$@"
+exec php-fpm7.3 -F

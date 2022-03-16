@@ -11,6 +11,7 @@
  * * Database settings
  * * Secret keys
  * * Database table prefix
+ * * Localized language
  * * ABSPATH
  *
  * @link https://wordpress.org/support/article/editing-wp-config-php/
@@ -48,14 +49,16 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'put your unique phrase here' );
-define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
-define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
-define( 'NONCE_KEY',        'put your unique phrase here' );
-define( 'AUTH_SALT',        'put your unique phrase here' );
-define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
-define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
-define( 'NONCE_SALT',       'put your unique phrase here' );
+define( 'AUTH_KEY',          'T2)xlv~Y5qvoNBQwZ>%bf`!hvW5frjHH_nXWMER03J1WcxrEE.b0F.vHyTv2xDr*' );
+define( 'SECURE_AUTH_KEY',   'hM3B/4c7@l`JfYGfuv`mj5cPBRzL=myWO6eH:N`l*#r%FsUx`fB-LyTf]bT:3Bkl' );
+define( 'LOGGED_IN_KEY',     'ai9sfyRm?S!K-`>nQ#z^#Owxe!h`3uYvM/m?8|5AIi>cwV0YSsc4L()29|.b9^U5' );
+define( 'NONCE_KEY',         'C^@)^jW#FD[p3.f`)M}a68d~28gu=YbpvhdC(UC:Ld3sid&nuAfrM)RQ.QkoK7B=' );
+define( 'AUTH_SALT',         's,g(jM@6ReUbjQ__KUJ+P81ioww<bGzQ!]478Vy[*,Z[< vVR)+(OSL0Tz$u.IVL' );
+define( 'SECURE_AUTH_SALT',  'i:$M5_9V1c1k=8PmIF#V>S1|>5/i8b]rsOgc.ac.h.fm#PX,-6~c$$6jI5B5.pXh' );
+define( 'LOGGED_IN_SALT',    ':lL,pk?mxy_hVb6inoq$yAmvSg2b4J2~mE[Ki14oBQ>hL9O0Fupx2`*ju7(Gp>6}' );
+define( 'NONCE_SALT',        '=ZGKy7%$Srig{z@PQJ[F;Qcujy??c%j>bc>)cucIDY!JlBjG$nx=G=P,ZH1<{%IA' );
+define( 'WP_CACHE_KEY_SALT', 'L@%DTS{mym7R%X){5GroWR@kog_$5re{p<G7o)G`W.)y,^A_.#nG4#);;6-;:>&2' );
+
 
 /**#@-*/
 
@@ -81,8 +84,6 @@ $table_prefix = 'wp_';
  */
 define( 'WP_DEBUG', false );
 
-// define('WP_SITEURL', 'https://lpascrea.42.fr');
-// define('WP_HOME', 'https://lpascrea.42.fr');
 
 /* Add any custom values between this line and the "stop editing" line. */
 
