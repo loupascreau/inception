@@ -3,6 +3,7 @@ services:
     container_name: ${CONTAINER_NAME_NGINX}
     restart: always
     build: ./requirements/nginx
+    image: nginx
     networks:
       - inception
     depends_on:
@@ -16,6 +17,7 @@ services:
     container_name: ${CONTAINER_NAME_WORDPRESS}
     restart: always
     build: ./requirements/wordpress
+    image: wordpress
     volumes:
       - wordpress_data:/var/www/wordpress
     depends_on:
@@ -35,6 +37,7 @@ services:
         - MYSQL_USER=${MYSQL_USER}
         - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    image: mariadb
     volumes:
       - db_data:/var/lib/mysql
     networks:
